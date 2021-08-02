@@ -1,0 +1,58 @@
+{% extends 'mysite/base.html' %}
+
+{% block content %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-8">
+        <h3 class="pb-4 mb-4 font-italic border-bottom">
+            マイページ
+        </h3>
+
+        <form class="row g-3" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            
+            {% include 'mysite/snippets/profile_image.html' %}
+
+
+            <div class="col-12">
+                <label class="form-label">ユーザー名（公開されます）</label>
+                <input type="text" class="form-control" id="id_username" name="username" placeholder="煉獄 杏寿郎" value="{{ user.profile.username }}">
+              </div>
+
+              <div class="col-md-2">
+                <label class="form-label">郵便番号</label>
+                <input type="text" class="form-control" id="id_zipcode" name="zipcode" value="{{user.profile.zipcode}}">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">都道府県</label>
+                <select id="id_prefecture" name="prefecture" class="form-select">
+                  <option selected>選択...</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">市区</label>
+                <input type="text" class="form-control" id="id_city" name="city" value="{{user.profile.city}}">
+              </div>
+              
+            <div class="col-12">
+              <label class="form-label">住所</label>
+              <input type="text" class="form-control" id="id_address" name="address" placeholder="" value="{{user.profile.address}}">
+            </div>
+
+            <div class="col-12">
+              <button type="submit" class="btn btn-success">保存</button>
+            </div>
+          </form>
+
+        </div>
+
+        {% include 'mysite/snippets/sidebar.html' %}
+
+    </div>
+</main>
+
+
+{% endblock %}

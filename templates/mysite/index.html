@@ -1,0 +1,75 @@
+{% extends 'mysite/base.html' %}
+
+{% block content %}
+
+{% include 'mysite/snippets/slider.html' %}
+
+<div class="container">
+    <div class="p-4 p-md-5 mb-4 rounded bg-warning">
+        <div class="col-md-6 px-0">
+            <h1 class="display-4 font-italic">Udemy Django 講座</h1>
+            <p class="lead my-3">どうぞゆっくりみていってください。</p>
+        </div>
+    </div>
+
+
+    <div class="row mb-2">
+        {% for obj in ranks %}
+        <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-primary">
+                    {% for tag in obj.tags.all %}
+                    {{ tag.name }} 
+                    {% endfor %}
+                </strong>
+                <h3 class="mb-0">{{ obj.title }}</h3>
+                <div class="mb-1 text-muted">{{ obj.created_at }} 
+                    <div class="d-inline-block text-warning">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-lightning-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/>
+                        </svg>
+                        {{ obj.count }}
+                    </div>
+                </div>
+                <p class="card-text mb-auto">{{ obj.text|striptags|slice:":60" }}</p>
+                <a href="/blog/{{ obj.id }}/" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-8 mb-4">
+        <h3 class="pb-4 mb-4 font-italic border-bottom display-5">
+            Articles
+        </h3>
+
+        {% for obj in articles %}
+        <div class="blog-post">
+            <h2 class="blog-post-title">{{ obj.title }}</h2>
+            <p class="blog-post-meta">{{ obj.created_at }} by <a href="#">{{ obj.author }}</a></p>
+        <p>{{ obj.text|striptags|slice:":120" }}...</p>
+            <a href="/blog/{{obj.id}}/" class="">続きはこちら</a>
+        </div>
+        <hr>
+        {% endfor %}
+
+        <nav class="blog-pagination">
+            <a class="btn btn-outline-primary" href="/blog/">ブログ一覧はこちら</a>
+        </nav>
+
+        </div>
+
+        {% include 'mysite/snippets/sidebar.html' %}
+
+
+    </div>
+</main>
+
+
+{% endblock %}

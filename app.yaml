@@ -1,0 +1,16 @@
+runtime: python38
+instance_class: F1
+env: standard
+service: default
+# プロジェクト名.wsgi:application
+entrypoint: gunicorn -b :$PORT config.wsgi:application
+
+includes:
+- secrets/secret.yaml
+
+handlers:
+  - url: /static
+    static_dir: staticfiles/
+  - url: .*
+    secure: always
+    script: auto

@@ -1,0 +1,45 @@
+{% load static %}
+{% load cache %}
+
+{% cache 86400 sidebar %}
+<aside class="col-md-4 mt-5 mt-md-0">
+    <div class="p-4 mb-3 bg-light rounded">
+        <h4 class="font-italic">本サイトについて</h4>
+        <p class="mb-0">私、藤本はUdemy講座の講師をしています。講座のDjangoプロジェクトにより本WEBサイトを制作しました。ご要望があれば新しい機能も追加していきたいです。実際にレッスンを見て、ゆっくり理解を深め、最後はしっかり手を動かしていけばこのようなWEBアプリケーションを開発することができます。ぜひチェックしていってください！</p>
+    </div>
+
+    <figure class="figure">
+        <a class="text-muted" href="https://www.udemy.com/course/reallysite/?referralCode=8D7BFA84042A1618A7B8">
+            <img class="figure-img img-fluid rounded"
+            src="{% static 'mysite/link-img.png' %}">
+            <figcaption class="figure-caption text-center font-italic small">
+                <span class="text-muted">【Python初心者歓迎】Django3で「本当に使える」WEBアプリケーションを開発しよう</span>
+            </figcaption>
+        </a>
+    </figure>
+
+    <figure class="figure">
+        <img class="figure-img img-fluid rounded"
+        src="{% static 'mysite/img2.png' %}">
+        <figcaption class="figure-caption text-center font-italic small">
+
+            <a class="text-muted" href="https://pixabay.com/ja/users/openclipart-vectors-30363/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=153309">OpenClipart-Vectors</a>による
+            <a class="text-muted" href="https://pixabay.com/ja/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=153309">Pixabay</a>からの画像
+
+        </figcaption>
+    </figure>
+
+
+    <figure class="figure">
+        <img class="figure-img img-fluid rounded"
+        src="{% static 'mysite/img1.jpg' %}">
+        <figcaption class="figure-caption text-center font-italic small">
+
+            <a class="text-muted" href="https://pixabay.com/ja/users/jillwellington-334088/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1906513">Jill Wellington</a>による
+            <a class="text-muted" href="https://pixabay.com/ja/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1906513">Pixabay</a>からの画像
+
+        </figcaption>
+    </figure>
+
+</aside>
+{% endcache %}

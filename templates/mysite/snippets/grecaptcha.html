@@ -1,0 +1,14 @@
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<div class="g-recaptcha" 
+    data-sitekey="{{ grecaptcha_sitekey }}"
+    data-callback="verifyCallback"></div>
+
+<script>
+    // コールバック関数
+    function verifyCallback(response) {
+        // submit の disabled属性を解除
+        document.getElementById('submit').disabled = false;
+    }
+</script>

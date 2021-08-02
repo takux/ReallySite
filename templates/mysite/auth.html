@@ -1,0 +1,54 @@
+{% extends 'mysite/base_auth.html' %}
+
+{% block content %}
+<div class="container ">
+    <div class="row">
+        <div class="col-lg-3 m-auto ">
+            <h1 class="display-4 font-italic text-center "><a href="/" class="text-decoration-none">ReallySite</a></h1>
+        </div>
+        <div class="col-lg-3 m-auto ">
+
+            <form class="form-signin mx-4" method="POST">
+                {% csrf_token %}
+
+                <div class="text-center">
+                    <h1 class="h5 my-4 ">
+                        {% if 'login' in request.path %}
+                        ログイン
+                        {% elif 'signup' in request.path %}
+                        新規登録
+                        {% endif %}
+                    </h1>
+                </div>
+
+                <div class="form-label-group my-3">
+                    <input type="email" id="id_email"
+                        name="{% if 'login' in request.path %}username{% elif 'signup' in request.path %}email{% endif %}"
+                        class="form-control" placeholder="Email address" required autofocus>
+                </div>
+
+                <div class="form-label-group my-3">
+                    <input type="password" id="id_password" name="password" class="form-control" placeholder="Password"
+                        required>
+                </div>
+
+                <button class="btn btn-primary btn-block my-3" type="submit">サインイン</button>
+
+            </form>
+
+            {% if 'login' in request.path %}
+            <div class="text-center">
+                <a href="/signup/" class="link-secondary">新規登録はこちら</a>
+            </div>
+            {% elif 'signup' in request.path %}
+            <div class="text-center">
+                <a href="/login/" class="link-secondary">ログインはこちら</a>
+            </div>
+
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

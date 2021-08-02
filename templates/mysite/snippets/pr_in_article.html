@@ -1,0 +1,8 @@
+{% load static %}
+{% for tag in article.tags.all %}
+    {% if 'Udemy' in tag.name %}
+        <a href="https://www.udemy.com/course/reallysite/?referralCode=8D7BFA84042A1618A7B8">
+            <img src="{% static 'mysite/link-img2.png' %}" width="75%" height="auto">
+        </a>
+    {% endif %}
+{% endfor %}

@@ -1,0 +1,42 @@
+{% extends 'mysite/base.html' %}
+{% load cache %}
+
+{% block content %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-8">
+
+            {% cache 604800 article article.id %}
+                <h3 class="font-italic display-4">
+                    {{article.title}}
+                </h3>
+
+                <p class="small text-muted text-right">{{article.created_at}} {{article.author}}</p>
+
+                <div class="my-5">{{article.text|safe}}</div>
+
+                <div class="my-4">
+                    {% include 'mysite/snippets/pr_in_article.html' %}
+                </div>
+            {% endcache %}
+
+            {% comment %} いいね＆タグ {% endcomment %}
+            <div>
+                {% include 'mysite/snippets/like_count.html' %}
+                {% include 'mysite/snippets/tag.html' %}
+            </div>
+
+
+
+            <hr class="my-4">
+            {% include 'mysite/snippets/comment.html' %}
+
+        </div>
+
+        {% include 'mysite/snippets/sidebar.html' %}
+        
+    </div>
+</main>
+
+{% endblock %}

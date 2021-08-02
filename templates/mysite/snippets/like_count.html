@@ -1,0 +1,82 @@
+
+<!--form method="POST" class="d-inline my-1">
+    {% csrf_token %}
+    <input type="hidden" name="like_count" value="true">
+    <button type="submit" class="btn btn-sm btn-outline-warning">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/>
+        </svg>
+        {{ article.count }} good
+    </button>
+</form-->
+
+
+<div class="d-inline my-1">
+    <button id="like_btn" type="button" class="btn btn-sm btn-outline-warning">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/>
+        </svg>
+        <span id="like_count">{{ article.count }}</span> good
+    </button>
+</div>
+
+
+<script>
+    window.addEventListener("DOMContentLoaded", (event) => {
+
+        var likeBtn = document.getElementById("like_btn");
+        likeBtn.addEventListener('click', (event) => {
+            // 送信先URL
+            var url = "/blog/{{ article.id }}/like/";
+            // csrftokenの取得
+            var csrfToken = getCookie("csrftoken");
+            // 送信したいデータがある場合
+            var data = {};
+
+
+            fetch(url, {
+                method: "POST",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Requested-With": "XMLHttpRequest",
+                    "X-CSRFToken": csrfToken,
+                },
+                body: JSON.stringify(data),
+            })
+            .then(Response => Response.json())
+            .then(data => {
+                if (data["message"] === "success") {
+                    var likeCount = document.getElementById("like_count");
+                    likeCount.innerText = (Number(likeCount.innerText)+1).toString();
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+        }, false);
+
+
+
+    }, false);
+
+
+
+function getCookie(name) {
+    if (document.cookie && document.cookie !== "") {
+        for (var cookie of document.cookie.split(';')) {
+            var [key, value] = cookie.trim().split("=");
+            if (key === name) {
+                return decodeURIComponent(value);
+            }
+        }
+    }
+    return null;
+}
+
+</script>
+
+
+    
+    

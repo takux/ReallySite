@@ -1,0 +1,30 @@
+{% extends 'mysite/base.html' %}
+
+{% block content %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-8">
+        <h3 class="pb-4 mb-4 font-italic border-bottom display-6">
+            {{ page_title }}
+        </h3>
+
+        {% for obj in page_obj %}
+        <div class="blog-post">
+            <h2 class="blog-post-title">{{ obj.title }}</h2>
+            <p class="blog-post-meta">{{ obj.created_at }} by <a href="#">{{ obj.author }}</a></p>
+            <p>{{ obj.text|striptags|slice:":120" }}</p>
+            <a href="/blog/{{obj.id}}/" class="">続きはこちら</a>
+        </div>
+        <hr>
+        {% endfor %}
+
+        {% include 'mysite/snippets/pagination.html' %}
+        </div>
+
+        {% include 'mysite/snippets/sidebar.html' %}
+    </div>
+</main>
+
+
+{% endblock %}
