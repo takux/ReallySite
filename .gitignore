@@ -16,3 +16,4 @@ mysite/models/__pycache__/
 memo.yaml
 db.sqlite3
 .gcloudignore
+templates/mysite/landing.html
