@@ -34,7 +34,7 @@ requests==2.25.1
 rsa==4.6
 six==1.15.0
 soupsieve==2.0.1
-sqlparse==0.4.1
+sqlparse==0.4.2
 toml==0.10.2
 tornado==6.1
 urllib3==1.26.2
