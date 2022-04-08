@@ -7,4 +7,4 @@ Udemyコース【[【Python】 Django3で「本当に使える」WEBアプリケ
 
 次のリンクで他のコースも含め、クーポンも配布しています。ぜひご覧になってみてください。
 
-=> [講師HP](https://takuma.one)
+=> [講師HP](https://takux.one)
