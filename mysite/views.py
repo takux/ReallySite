@@ -80,6 +80,8 @@ class MypageView(LoginRequiredMixin, View):
 
     def post(self, request):
         form = ProfileForm(request.POST, request.FILES)
+        # 更新処理がうまくいかない場合は次のようにする
+        # form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
